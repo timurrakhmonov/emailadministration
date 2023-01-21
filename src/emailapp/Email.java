@@ -17,7 +17,9 @@ public class Email {
         this.lastName = lastName;
         System.out.println("New Employee: " + this.firstName + " " + this.lastName);
         //calling methods
-
+        this.department = this.setDepartment();
+        this.password = this.generatePassword(10);
+        this.email = this.generateEmail();
     }
 
     private String generateEmail(){
@@ -108,9 +110,41 @@ public class Email {
         System.out.println(" New: " + this.firstName + " " + this.lastName);
         System.out.println(" Department: " + this.department);
         System.out.println(" Email: " + this.email);
-        System.out.println("Password: " + this.password);
-        System.out.println("Mail Capacity: " + this.mailCapacity + " MB");
-        System.out.println("Alternate mail: " + this.alternativeEmail);
+        System.out.println(" Password: " + this.password);
+        System.out.println(" Mail Capacity: " + this.mailCapacity + " MB");
+        System.out.println(" Alternate mail: " + this.alternativeEmail);
     }
+
+    //Store in file
+    public void storeFile() {
+        try {
+            FileWriter in = new FileWriter("C:\\Users\\krakh\\Desktop\\infoEA.txt");
+            in.write("First name: " + this.firstName);
+            in.append("\nLast name: " + this.lastName);
+            in.append("\nEmail: " + this.email);
+            in.append("\nPassword: " + this.password);
+            in.append("\nCapacity: " + this.mailCapacity);
+            in.append("\nAlternative email: " + this.alternativeEmail);
+            in.close();
+            System.out.println("Data Stored...");
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    //Reading from file
+    public void readingFile() {
+        try {
+            FileReader fr = new FileReader("C:\\Users\\krakh\\Desktop\\infoEA.txt");
+            int i;
+            while((i = fr.read()) != -1){
+                System.out.print((char)i);
+            }
+            fr.close();
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
 }
 
